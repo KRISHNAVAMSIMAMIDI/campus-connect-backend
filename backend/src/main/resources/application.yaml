@@ -3,12 +3,11 @@ spring:
     name: backend
 
   datasource:
-    url: jdbc:mysql://root:KLeuvUYVEVKkGqsNdiJjGoamTEANXDoY@acela.proxy.rlwy.net:25890/railway
-    username: root
-    password: KLeuvUYVEVKkGqsNdiJjGoamTEANXDoY
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
       ddl-auto: update
-
     show-sql: true
