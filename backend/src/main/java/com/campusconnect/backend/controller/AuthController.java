@@ -19,8 +19,19 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    // Register User
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest request) {
         return authService.register(request);
+    }
+
+    // Login User
+    @PostMapping("/login")
+    public User login(@RequestBody User loginUser) {
+
+        return authService.login(
+                loginUser.getEmail(),
+                loginUser.getPassword()
+        );
     }
 }

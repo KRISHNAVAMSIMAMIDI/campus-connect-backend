@@ -3,9 +3,10 @@ spring:
     name: backend
 
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://root:KLeuvUYVEVKkGqsNdiJjGoamTEANXDoY@acela.proxy.rlwy.net:25890/railway
+    username: root
+    password: KLeuvUYVEVKkGqsNdiJjGoamTEANXDoY
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
