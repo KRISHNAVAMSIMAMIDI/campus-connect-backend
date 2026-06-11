@@ -3,7 +3,13 @@ package com.campusconnect.backend;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(properties = {
+		"spring.datasource.url=jdbc:h2:mem:campusconnect_test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false",
+		"spring.datasource.driver-class-name=org.h2.Driver",
+		"spring.datasource.username=sa",
+		"spring.datasource.password=",
+		"spring.jpa.hibernate.ddl-auto=create-drop"
+})
 class BackendApplicationTests {
 
 	@Test
