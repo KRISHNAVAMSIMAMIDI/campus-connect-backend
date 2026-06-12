@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.campusconnect.backend.dto.LoginRequest;
 import com.campusconnect.backend.dto.RegisterRequest;
 import com.campusconnect.backend.entity.User;
 import com.campusconnect.backend.service.AuthService;
@@ -19,19 +20,17 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    // Register User
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest request) {
         return authService.register(request);
     }
 
-    // Login User
     @PostMapping("/login")
-    public User login(@RequestBody User loginUser) {
+    public User login(@RequestBody LoginRequest request) {
 
         return authService.login(
-                loginUser.getEmail(),
-                loginUser.getPassword()
+                request.getEmail(),
+                request.getPassword()
         );
     }
 }
