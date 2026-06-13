@@ -1,6 +1,11 @@
 package com.campusconnect.backend.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "events")
@@ -10,16 +15,20 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "event_name")
     private String eventName;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String venue;
 
+    @Column(name = "event_date")
     private String eventDate;
 
     private String organizer;
 
+    @Column(name = "image_url")
     private String imageUrl;
 
     private String status;
