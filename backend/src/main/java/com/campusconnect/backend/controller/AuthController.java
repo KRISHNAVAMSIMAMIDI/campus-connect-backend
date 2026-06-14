@@ -1,6 +1,5 @@
 package com.campusconnect.backend.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,10 +15,11 @@ import com.campusconnect.backend.service.AuthService;
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
-
-    @Autowired
-    private AuthService authService;
-
+    
+    private final AuthService authService;
+    public AuthController(AuthService authService){
+        this.authService=authService;
+    }
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest request) {
         return authService.register(request);
