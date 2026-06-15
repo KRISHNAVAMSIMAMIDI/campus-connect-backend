@@ -10,26 +10,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.campusconnect.backend.entity.Recruitment;
-import com.campusconnect.backend.service.RecruitmentService;
+import com.campusconnect.backend.entity.Application;
+import com.campusconnect.backend.service.ApplicationService;
 
 @RestController
-@RequestMapping("/api/recruitments")
+@RequestMapping("/api/applications")
 @CrossOrigin("*")
-public class RecruitmentController {
+public class ApplicationController {
 
     @Autowired
-    private RecruitmentService service;
+    private ApplicationService service;
 
     @PostMapping
-    public Recruitment addRecruitment(
-            @RequestBody Recruitment recruitment) {
+    public Application apply(
+            @RequestBody Application application) {
 
-        return service.addRecruitment(recruitment);
+        return service.apply(application);
     }
 
     @GetMapping
-    public List<Recruitment> getAllRecruitments() {
-        return service.getAllRecruitments();
+    public List<Application> getAllApplications() {
+        return service.getAllApplications();
     }
 }
