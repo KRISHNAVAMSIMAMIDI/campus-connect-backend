@@ -1,6 +1,8 @@
 package com.campusconnect.backend.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,16 +12,28 @@ import com.campusconnect.backend.dto.LoginRequest;
 import com.campusconnect.backend.dto.RegisterRequest;
 import com.campusconnect.backend.entity.User;
 import com.campusconnect.backend.service.AuthService;
+import com.campusconnect.backend.service.EmailService;
+import com.campusconnect.backend.dto.OtpRequest;
+import com.campusconnect.backend.dto.VerifyOtpRequest;
+import com.campusconnect.backend.service.OtpService;
 
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
-    
+
     private final AuthService authService;
-    public AuthController(AuthService authService){
-        this.authService=authService;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private OtpService otpService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
+
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest request) {
         return authService.register(request);
@@ -32,5 +46,35 @@ public class AuthController {
                 request.getEmail(),
                 request.getPassword()
         );
+    }
+
+    @PostMapping("/send-otp")
+    public String sendOtp(@RequestBody OtpRequest request) {
+
+        otpService.sendOtp(request.getEmail());
+
+        return "OTP sent successfully";
+    }
+
+    @PostMapping("/verify-otp")
+    public String verifyOtp(
+        @RequestBody VerifyOtpRequest request) {
+
+        otpService.verifyOtp(
+                request.getEmail(),
+                request.getOtp()
+        );
+
+        return "OTP verified successfully";
+    }
+
+    @GetMapping("/test-email")
+    public String testEmail() {
+
+        emailService.sendTestEmail(
+                "323103310142@gvpce.ac.in"
+        );
+
+        return "Email sent successfully";
     }
 }

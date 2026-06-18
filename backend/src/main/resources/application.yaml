@@ -12,3 +12,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: 323103310142@gvpce.ac.in
+    password: wkmn dpmu laxb czmv
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
