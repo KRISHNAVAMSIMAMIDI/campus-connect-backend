@@ -12,11 +12,20 @@ public class User {
 
     private String name;
 
+    @Column(unique = true, nullable = false)
     private String email;
 
     private String password;
 
     private String role;
+
+    @Column(name = "roll_number")
+    private String rollNumber;
+
+    private String branch;
+
+    @Column(name = "passout_year")
+    private Integer passoutYear;
 
     public User() {
     }
@@ -59,5 +68,29 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getRollNumber() {
+        return rollNumber;
+    }
+
+    public void setRollNumber(String rollNumber) {
+        this.rollNumber = rollNumber;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public Integer getPassoutYear() {
+        return passoutYear;
+    }
+
+    public void setPassoutYear(Integer passoutYear) {
+        this.passoutYear = passoutYear;
     }
 }
