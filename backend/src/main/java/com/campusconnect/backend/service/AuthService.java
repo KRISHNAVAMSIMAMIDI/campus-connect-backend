@@ -60,7 +60,9 @@ public class AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!user.getPassword().equals(password)) {
+        String storedPassword = user.getPassword();
+
+        if (storedPassword == null || !storedPassword.equals(password)) {
             throw new RuntimeException("Invalid password");
         }
 
