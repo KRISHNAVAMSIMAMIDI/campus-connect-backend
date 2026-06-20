@@ -1,4 +1,3 @@
-
 package com.campusconnect.backend.service;
 
 import java.util.List;
@@ -22,5 +21,25 @@ public class ApplicationService {
 
     public List<Application> getAllApplications() {
         return repository.findAll();
+    }
+
+    public Application approveApplication(Long id) {
+
+        Application application =
+                repository.findById(id).orElseThrow();
+
+        application.setStatus("APPROVED");
+
+        return repository.save(application);
+    }
+
+    public Application rejectApplication(Long id) {
+
+        Application application =
+                repository.findById(id).orElseThrow();
+
+        application.setStatus("REJECTED");
+
+        return repository.save(application);
     }
 }

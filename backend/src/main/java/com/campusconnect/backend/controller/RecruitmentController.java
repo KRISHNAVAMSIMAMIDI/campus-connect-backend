@@ -3,12 +3,7 @@ package com.campusconnect.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.campusconnect.backend.entity.Recruitment;
 import com.campusconnect.backend.service.RecruitmentService;
@@ -31,5 +26,14 @@ public class RecruitmentController {
     @GetMapping
     public List<Recruitment> getAllRecruitments() {
         return service.getAllRecruitments();
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteRecruitment(
+            @PathVariable Long id) {
+
+        service.deleteRecruitment(id);
+
+        return "Recruitment Deleted Successfully";
     }
 }

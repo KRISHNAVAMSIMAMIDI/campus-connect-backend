@@ -21,4 +21,8 @@ public class RecruitmentService {
     public List<Recruitment> getAllRecruitments() {
         return repository.findAll();
     }
+
+    public void deleteRecruitment(Long id) {
+        repository.deleteById(id);
+    }
 }
