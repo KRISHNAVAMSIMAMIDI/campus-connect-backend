@@ -2,10 +2,13 @@ package com.campusconnect.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.campusconnect.backend.dto.CreateClubRequest;
 import com.campusconnect.backend.entity.Club;
+import com.campusconnect.backend.entity.ClubMembership;
 import com.campusconnect.backend.entity.User;
+import com.campusconnect.backend.repository.ClubMembershipRepository;
 import com.campusconnect.backend.repository.ClubRepository;
 import com.campusconnect.backend.repository.UserRepository;
 
@@ -18,6 +21,10 @@ public class AdminService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ClubMembershipRepository clubMembershipRepository;
+
+    @Transactional
     public Club createClub(
             CreateClubRequest request) {
 
@@ -49,7 +56,10 @@ public class AdminService {
 
         String role = user.getRole();
 
-        if (!role.contains("CLUB_ADMIN")) {
+        if (role == null || role.isBlank()) {
+            user.setRole("CLUB_ADMIN");
+            userRepository.save(user);
+        } else if (!role.contains("CLUB_ADMIN")) {
 
             user.setRole(
                     role + ",CLUB_ADMIN");
@@ -57,6 +67,14 @@ public class AdminService {
             userRepository.save(user);
         }
 
-        return clubRepository.save(club);
+        Club savedClub = clubRepository.save(club);
+
+        ClubMembership membership = new ClubMembership();
+        membership.setClubId(savedClub.getId());
+        membership.setUserId(user.getId());
+        membership.setStatus("CLUB_ADMIN");
+        clubMembershipRepository.save(membership);
+
+        return savedClub;
     }
 }

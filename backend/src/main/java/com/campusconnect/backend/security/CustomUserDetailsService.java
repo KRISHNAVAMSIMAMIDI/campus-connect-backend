@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.campusconnect.backend.repository.UserRepository;
 
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -23,10 +25,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         com.campusconnect.backend.entity.User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
+        String roles = user.getRole() == null ? "" : user.getRole();
+
+        List<SimpleGrantedAuthority> authorities = Arrays.stream(roles.split(","))
+                .map(String::trim)
+                .filter(role -> !role.isBlank())
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                .collect(Collectors.toList());
+
         return new User(
                 user.getEmail(),
                 user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
+                authorities
         );
     }
 }

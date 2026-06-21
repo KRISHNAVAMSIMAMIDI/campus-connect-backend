@@ -7,4 +7,5 @@ import com.campusconnect.backend.entity.Event;
 public interface EventRepository
         extends JpaRepository<Event, Long> {
 
+    long countByStatusIgnoreCase(String status);
 }

@@ -1,52 +1,24 @@
-package com.campusconnect.backend.entity;
+package com.campusconnect.backend.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+public class SuperAdminClubResponse {
 
-@Entity
-@Table(name = "clubs")
-public class Club {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private String tagline;
-
-    @Column(columnDefinition = "TEXT")
     private String description;
-
-    @Column(columnDefinition = "TEXT")
     private String about;
-
-    @Column(columnDefinition = "TEXT")
     private String vision;
-
     private String faculty;
-
     private Integer members;
-
-    @Column(name = "logo_url")
+    private Long totalMembers;
     private String logoUrl;
-
-    @Column(name = "banner_url")
     private String bannerUrl;
-
     private String recruitment;
-
-    @Column(name = "instagram_url")
     private String instagramUrl;
-
-    @Column(name = "linkedin_url")
     private String linkedinUrl;
+    private ClubAdminResponse clubAdmin;
 
-    public Club() {
+    public SuperAdminClubResponse() {
     }
 
     public Long getId() {
@@ -113,6 +85,14 @@ public class Club {
         this.members = members;
     }
 
+    public Long getTotalMembers() {
+        return totalMembers;
+    }
+
+    public void setTotalMembers(Long totalMembers) {
+        this.totalMembers = totalMembers;
+    }
+
     public String getLogoUrl() {
         return logoUrl;
     }
@@ -153,4 +133,11 @@ public class Club {
         this.linkedinUrl = linkedinUrl;
     }
 
+    public ClubAdminResponse getClubAdmin() {
+        return clubAdmin;
+    }
+
+    public void setClubAdmin(ClubAdminResponse clubAdmin) {
+        this.clubAdmin = clubAdmin;
+    }
 }
