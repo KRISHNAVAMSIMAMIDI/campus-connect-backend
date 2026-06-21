@@ -51,4 +51,10 @@ public class EventController {
 
         return "Event Deleted Successfully";
     }
+    @GetMapping("/club/{clubId}")
+public List<Event> getEventsByClubId(
+        @PathVariable Long clubId) {
+
+    return service.getEventsByClubId(clubId);
+ } 
 }
