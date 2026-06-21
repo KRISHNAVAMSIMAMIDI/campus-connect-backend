@@ -50,4 +50,10 @@ public class ClubService {
     public void deleteClub(Long id) {
         repository.deleteById(id);
     }
+    public Club getClubByAdminEmail(String email) {
+
+    return repository
+            .findByAdminEmail(email)
+            .orElse(null);
+}
 }

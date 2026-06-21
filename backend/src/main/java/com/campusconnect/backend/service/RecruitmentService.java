@@ -25,4 +25,9 @@ public class RecruitmentService {
     public void deleteRecruitment(Long id) {
         repository.deleteById(id);
     }
+    public List<Recruitment> getRecruitmentsByClubId(
+            Long clubId) {
+
+        return repository.findByClubId(clubId);
+    }
 }
