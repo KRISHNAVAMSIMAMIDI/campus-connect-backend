@@ -15,6 +15,9 @@ public class Club {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "admin_email")
+    private String adminEmail;
+
     private String name;
 
     private String tagline;
@@ -152,5 +155,16 @@ public class Club {
     public void setLinkedinUrl(String linkedinUrl) {
         this.linkedinUrl = linkedinUrl;
     }
+<<<<<<< HEAD
 
 }
+=======
+    public String getAdminEmail() {
+    return adminEmail;
+}
+
+public void setAdminEmail(String adminEmail) {
+    this.adminEmail = adminEmail;
+}
+}
+>>>>>>> abe41b61bddfffc221a8611442cf51a94731261e
