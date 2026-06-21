@@ -16,17 +16,10 @@ public interface UserRepository
 
     Optional<User> findByEmail(String email);
 
+    long countByRoleContaining(String role);
+
     @Query("select new com.campusconnect.backend.dto.SuperAdminUserResponse(u.id, u.name, u.email, u.role) from User u")
     List<SuperAdminUserResponse> findAllSuperAdminUsers();
-
-    @Query("""
-            select count(u) from User u
-            where u.role = :role
-               or u.role like concat(:role, ',%')
-               or u.role like concat('%,', :role)
-               or u.role like concat(concat('%,', :role), ',%')
-            """)
-    long countByRoleToken(@Param("role") String role);
 
     @Modifying
     @Query("update User u set u.role = :role where u.id = :id")

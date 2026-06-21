@@ -4,12 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.campusconnect.backend.dto.AdminDashboardResponse;
 import com.campusconnect.backend.dto.CreateClubRequest;
 import com.campusconnect.backend.entity.Club;
 import com.campusconnect.backend.entity.ClubMembership;
 import com.campusconnect.backend.entity.User;
+import com.campusconnect.backend.repository.AnnouncementRepository;
+import com.campusconnect.backend.repository.ApplicationRepository;
 import com.campusconnect.backend.repository.ClubMembershipRepository;
 import com.campusconnect.backend.repository.ClubRepository;
+import com.campusconnect.backend.repository.EventRepository;
 import com.campusconnect.backend.repository.UserRepository;
 
 @Service
@@ -23,6 +27,25 @@ public class AdminService {
 
     @Autowired
     private ClubMembershipRepository clubMembershipRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
+
+    @Autowired
+    private AnnouncementRepository announcementRepository;
+
+    @Autowired
+    private ApplicationRepository applicationRepository;
+
+    public AdminDashboardResponse getDashboardStats() {
+        return new AdminDashboardResponse(
+                userRepository.countByRoleContaining("STUDENT"),
+                clubRepository.count(),
+                eventRepository.count(),
+                userRepository.countByRoleContaining("CLUB_ADMIN"),
+                announcementRepository.count(),
+                applicationRepository.count());
+    }
 
     @Transactional
     public Club createClub(

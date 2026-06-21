@@ -1,5 +1,6 @@
 package com.campusconnect.backend.controller;
 
+import com.campusconnect.backend.dto.AdminDashboardResponse;
 import com.campusconnect.backend.dto.CreateClubRequest;
 import com.campusconnect.backend.entity.Club;
 import com.campusconnect.backend.service.AdminService;
@@ -14,6 +15,11 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    @GetMapping("/dashboard")
+    public AdminDashboardResponse getDashboardStats() {
+        return adminService.getDashboardStats();
+    }
 
     @PostMapping("/create-club")
     public Club createClub(
