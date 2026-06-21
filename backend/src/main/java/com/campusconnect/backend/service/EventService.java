@@ -74,4 +74,7 @@ public class EventService {
                 event.getEventDate(),
                 event.getStatus());
     }
+    public List<Event> getEventsByClubId(Long clubId) {
+    return repository.findByClubId(clubId);
+}
 }

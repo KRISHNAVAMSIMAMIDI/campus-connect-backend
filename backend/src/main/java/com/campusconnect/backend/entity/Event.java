@@ -14,6 +14,11 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "club_id")
+ private Long clubId;
+
+ @Column(name = "club_name")
+  private String clubName;
 
     @Column(name = "event_name")
     private String eventName;
@@ -99,4 +104,19 @@ public class Event {
     public void setStatus(String status) {
         this.status = status;
     }
+    public Long getClubId() {
+    return clubId;
+}
+
+public void setClubId(Long clubId) {
+    this.clubId = clubId;
+}
+
+public String getClubName() {
+    return clubName;
+}
+
+public void setClubName(String clubName) {
+    this.clubName = clubName;
+}
 }

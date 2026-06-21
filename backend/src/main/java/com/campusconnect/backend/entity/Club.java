@@ -155,16 +155,12 @@ public class Club {
     public void setLinkedinUrl(String linkedinUrl) {
         this.linkedinUrl = linkedinUrl;
     }
-<<<<<<< HEAD
-
-}
-=======
     public String getAdminEmail() {
     return adminEmail;
-}
+  }
 
 public void setAdminEmail(String adminEmail) {
     this.adminEmail = adminEmail;
+ }
 }
-}
->>>>>>> abe41b61bddfffc221a8611442cf51a94731261e
+
