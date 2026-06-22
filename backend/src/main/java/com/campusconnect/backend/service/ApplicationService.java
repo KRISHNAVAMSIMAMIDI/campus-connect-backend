@@ -33,6 +33,13 @@ public class ApplicationService {
         return repository.save(application);
     }
 
+    @Autowired
+    private ApplicationRepository applicationRepository;
+
+    public List<Application> getApplicationsByClubId(Long clubId) {
+        return applicationRepository.findByClubId(clubId);
+    }
+
     public Application rejectApplication(Long id) {
 
         Application application =

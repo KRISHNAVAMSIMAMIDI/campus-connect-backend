@@ -29,4 +29,8 @@ public class AnnouncementService {
 
         repository.deleteById(id);
     }
+
+    public List<Announcement> getAnnouncementsByClubId(Long clubId) {
+        return repository.findByClubIdOrderByDateDesc(clubId);
+    }
 }

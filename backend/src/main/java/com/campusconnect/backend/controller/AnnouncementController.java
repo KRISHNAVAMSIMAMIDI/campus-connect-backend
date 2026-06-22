@@ -42,4 +42,8 @@ public class AnnouncementController {
 
         service.deleteAnnouncement(id);
     }
+    @GetMapping("/club/{clubId}")
+public List<Announcement> getAnnouncementsByClubId(@PathVariable Long clubId) {
+    return service.getAnnouncementsByClubId(clubId);
+}
 }

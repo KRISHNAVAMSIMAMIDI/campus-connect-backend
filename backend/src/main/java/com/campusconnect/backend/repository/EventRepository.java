@@ -11,5 +11,5 @@ public interface EventRepository
 
     long countByStatusIgnoreCase(String status);
 
-    List<Event> findByClubId(Long clubId);
+    List<Event> findByClubIdOrderByEventDateDesc(Long clubId);
 }

@@ -75,6 +75,6 @@ public class EventService {
                 event.getStatus());
     }
     public List<Event> getEventsByClubId(Long clubId) {
-    return repository.findByClubId(clubId);
+    return repository.findByClubIdOrderByEventDateDesc(clubId);
 }
 }
